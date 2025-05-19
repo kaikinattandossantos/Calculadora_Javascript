@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora Mista</title>
+  <style>
+    body { font-family: Arial; max-width: 300px; margin: 0 auto; }
+    input, button { padding: 8px; margin: 5px 0; width: 100%; }
+    button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Calculadora</h2>
+  <input type="number" id="num1" placeholder="Número 1">
+  <select id="operacao">
+    <option value="+">Somar (+)</option>
+    <option value="-">Subtrair (-)</option>
+    <option value="*">Multiplicar (×)</option>
+    <option value="/">Dividir (÷)</option>
+    <option value="pi">Multiplicar por π</option>
+    <option value="gravidade">Calcular Peso (m × g)</option>
+  </select>
+  <input type="number" id="num2" placeholder="Número 2 (opcional)">
+  <button onclick="calcular()">Calcular</button>
+  <p id="resultado"></p>
+
+  <script>
+    // Constantes
+    const PI = 3.1416;
+    const GRAVIDADE = 9.8;
+
+    function calcular() {
+      // Dados do usuário
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const operacao = document.getElementById("operacao").value;
+      const num2Input = document.getElementById("num2");
+      let resultado;
+
+      // Lógica
+      switch (operacao) {
+        case "+":
+          resultado = num1 + parseFloat(num2Input.value || 0);
+          break;
+        case "-":
+          resultado = num1 - parseFloat(num2Input.value || 0);
+          break;
+        case "*":
+          resultado = num1 * parseFloat(num2Input.value || 1);
+          break;
+        case "/":
+          resultado = num1 / parseFloat(num2Input.value || 1);
+          break;
+        case "pi":
+          resultado = num1 * PI;
+          break;
+        case "gravidade":
+          resultado = num1 * GRAVIDADE;
+          break;
+      }
+
+      // Exibe o resultado
+      document.getElementById("resultado").innerHTML = 
+        `Resultado: <strong>${resultado}</strong>`;
+    }
+  </script>
+</body>
+</html>
